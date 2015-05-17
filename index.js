@@ -11,7 +11,7 @@ var server = require('http').createServer(app).listen(8080);
 // Instantiate Socket.IO server
 var io = require('socket.io').listen(server);
 
-io.set('log level',1);
+// io.set('log level',1);
 
 // Listen for connections
 io.sockets.on('connection', function (socket) {
