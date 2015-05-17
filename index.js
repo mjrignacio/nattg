@@ -3,12 +3,7 @@ var path = require('path');
 var app = express();
 var nattg = require('./nattg');
 
-// Create Express app
-app.configure(function() {
-    app.use(express.logger('dev'));
-    // Serve files from the 'public' directory
-    app.use(express.static(path.join(__dirname,'public')));
-});
+app.use(express.static(__dirname + '/public'));
 
 // Set port to 8080
 var server = require('http').createServer(app).listen(8080);
