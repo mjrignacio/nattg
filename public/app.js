@@ -1,4 +1,3 @@
-;
 jQuery(function($){    
     'use strict';
 
@@ -22,6 +21,7 @@ jQuery(function($){
             IO.socket.on('beginNewGame', IO.beginNewGame );
             IO.socket.on('newWordData', IO.onNewWordData);
             IO.socket.on('hostCheckAnswer', IO.hostCheckAnswer);
+            IO.socket.on('hostBroadcastChat', IO.hostBroadcastChat);
             IO.socket.on('gameOver', IO.gameOver);
             IO.socket.on('error', IO.error );
         },
@@ -84,6 +84,14 @@ jQuery(function($){
             if(App.myRole === 'Host') {
                 App.Host.checkAnswer(data);
             }
+        },
+
+        /**
+         * On player chat
+         * @param data
+         */
+        hostBroadcastChat : function(data) {
+            App[App.myRole].chat(data);
         },
 
         /**
@@ -159,6 +167,7 @@ jQuery(function($){
             // Player
             App.$doc.on('click', '#btnJoinGame', App.Player.onJoinClick);
             App.$doc.on('click', '#btnStart',App.Player.onPlayerStartClick);
+            App.$doc.on('click', '#btnChat', App.Player.onPlayerChat);
             App.$doc.on('click', '.btnAnswer',App.Player.onPlayerAnswerClick);
             App.$doc.on('click', '#btnPlayerRestart', App.Player.onPlayerRestart);
         },
@@ -341,6 +350,10 @@ jQuery(function($){
                 }
             },
 
+            /**
+             * Broadcasts the chat
+             */
+            chat : function(data) {},
 
             /**
              * All 10 rounds have played out. End the game.
@@ -430,6 +443,18 @@ jQuery(function($){
             },
 
             /**
+             * The player chatted
+             */
+            onPlayerChat: function() {    
+                var data = {
+                    playerName : App.Player.myName,
+                    message : $('#message').val()
+                }
+                IO.socket.emit('playerChat', data);
+                $('#message').val('');
+            },
+
+            /**
              *  Click handler for the Player hitting a word in the word list.
              */
             onPlayerAnswerClick: function() {
@@ -484,7 +509,7 @@ jQuery(function($){
             gameCountdown : function(hostData) {
                 App.Player.hostSocketId = hostData.mySocketId;
                 $('#gameArea')
-                    .html('<div class="gameOver">Get Ready!</div>');
+                    .html('<div class="gameOver">Get ready..</div>');
             },
 
             /**
@@ -518,7 +543,7 @@ jQuery(function($){
              */
             endGame : function() {
                 $('#gameArea')
-                    .html('<div class="gameOver">Game Over!</div>')
+                    .html('<div class="gameOver">Game Over!</div><ul id="messages"></ul><div class="chatDiv"><input id="message" class="inputMessage" placeholder="Type here..."/></div><button id="btnChat" class="btn">chat</button>')
                     .append(
                         // Create a button to start a new game.
                         $('<button>Start Again</button>')
@@ -526,6 +551,13 @@ jQuery(function($){
                             .addClass('btn')
                             .addClass('btnGameOver')
                     );
+            }, 
+
+            /**
+             * Chat after game
+             */
+            chat : function(data) {
+                $('#messages').html('<div class="message"><span class="username">' + data.playerName + '<span>: ' + data.message + '</div>');
             }
         },
 
