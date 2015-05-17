@@ -396,11 +396,6 @@ jQuery(function($){
             }
         },
 
-
-        /* *****************************
-           *        PLAYER CODE        *
-           ***************************** */
-
         Player : {
 
             /**
@@ -560,11 +555,6 @@ jQuery(function($){
                 $('#messages').html('<div class="message"><span class="username">' + data.playerName + '<span>: ' + data.message + '</div>');
             }
         },
-
-
-        /* **************************
-                  UTILITY CODE
-           ************************** */
 
         /**
          * Display the countdown timer on the Host screen
