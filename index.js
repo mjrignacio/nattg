@@ -22,19 +22,3 @@ io.set('log level',1);
 io.sockets.on('connection', function (socket) {
     nattg.initGame(io, socket);
 });
-
-// Chat-astrophe
-
-var http = require('http').Server(app);
-
-app.get('/', function(req, res){
-  res.sendfile('index.html');
-});
-
-io.on('connection', function(socket){
-  console.log('a user connected');
-});
-
-http.listen(8080, function(){
-  console.log('listening on *:8080');
-});
