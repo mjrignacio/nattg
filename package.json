@@ -1,0 +1,11 @@
+{
+    "name" : "Not a Text Twist Game",
+    "description" : "It's like Text Twist, but it's not",
+    "version" : "0.1.0",
+    "private" : true,
+    "dependencies": {
+        "express": "3.x",
+        "socket.io":"0.9"
+    }
+}
+

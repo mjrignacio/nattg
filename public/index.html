@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+
+        <!-- For mobile responsiveness -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+        <!-- Google font declaration -->
+        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+        <link href="css/styles.css" rel="stylesheet">
+        <title>Not a Text Twist Game</title>
+    </head>
+
+    <body>
+
+
+        <div id="gameArea">
+        </div>
+
+        <!-- Homepage screen -->
+        <script id="intro-screen-template" type="text/template">
+            <div class="titleWrapper">
+                <div class="title">
+                    NATTG
+                </div>
+
+                <div class="subtitle">*Not a Text Twist Game</div>
+
+                <div class="buttons">
+                    <button id="btnCreateGame" class="btn">serve(r)</button>
+                    <button id="btnJoinGame" class="btn">play(er)</button>
+                    <div style="clear:both"></div>
+                </div>
+                <div class="chat">
+                    <input class="inputMessage" placeholder="Say something..."/>
+                    <ul class="messages">asd</ul>
+                </div>
+            </div>
+
+        </script>
+
+        <!-- Create screen -->
+        <script id="create-game-template" type="text/template">
+            <div class="createGameWrapper">
+                <div class="info none">Open this site on your mobile device:</div>
+                <div id="gameURL" class="infoBig">Error!</div>
+
+                <div class="info">Magic Number</div>
+                <div id="spanNewGameCode" class="gameId">Error!</div>
+
+                <div id="playersWaiting"></div>
+            </div>
+        </script>
+
+        <!-- Join screen -->
+        <script id="join-game-template" type="text/template">
+            <div class="joinGameWrapper">
+                <div class="info" style="margin-top: 100px;">
+                    <label for="inputPlayerName">Your Name:</label>
+                    <input id="inputPlayerName" type="text" />
+                </div>
+
+                <div class="info" style="margin-top: -70px;">
+                    <label for="inputGameId">And the magic code is?</label>
+                    <input id="inputGameId" type="text"/>
+                </div>
+
+                <div class="info buttons">
+                    <button id="btnStart" class="btn">Start</button>
+                    <div id="playerWaitingMessage"></div>
+                </div>
+            </div>
+        </script>
+
+        <!-- Host screen -->
+        <script id="host-game-template" type="text/template">
+            <div id="wordArea">
+                <div id="hostWord">5</div>
+            </div>
+            <div id="playerScores">
+                <div id="player1Score" class="playerScore">
+                    <span class="score">0</span><span class="playerName">Player 1</span>
+                </div>
+                <div id="player2Score" class="playerScore">
+                    <span class="playerName">Player 2</span><span class="score">0</span>
+                </div>
+            </div>
+        </script>
+
+        <!-- JavaScript Libraries -->
+
+        <!-- jQuery -->
+        <script src="libs/jquery-2.0.2.min.js"></script>
+
+        <!-- For responsiveness across any screen size -->
+        <script src="libs/textFit.min.js"></script>
+
+        <!-- Mobile reponsivness -->
+        <script src="libs/fastclick.js"></script>
+
+        <!-- Socket.io-->
+        <script src="/socket.io/socket.io.js"></script>
+
+        <!-- Game logic-->
+        <script src="app.js"></script>
+
+        <!-- Chat-astrophe -->
+        <script>
+          var socket = io();
+        </script>
+
+    </body>
+</html>
