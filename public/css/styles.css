@@ -304,13 +304,13 @@ html, body {
 }
 
 input.inputMessage {
-  width: 50%;
+  width: 30%;
   margin-top: 20px;
-  height: 80px;
-  font-size: 2.5em;
+  height: 30px;
+  font-size: 1em;
   padding: 10px;
   color: #808080;
-  padding-left: 30px;
+  padding-left: 20px;
   float: left;
 }
 
@@ -318,4 +318,24 @@ ul.messages {
     width: 30%;
     float: left;
     padding: 10px 50px;
+}
+
+button#btnChat {
+    height: 10%!important;
+}
+
+.message {
+    font-family: 'Lato', sans-serif;
+}
+
+.message .username {
+    font-weight: bold;   
+}
+
+.chatDiv {
+  display: block;
+  width: 100%;
+  float: left;
+  margin-left: 33%;
+  margin-bottom: 20px;
 }
