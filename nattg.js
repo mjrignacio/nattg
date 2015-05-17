@@ -20,6 +20,7 @@ exports.initGame = function(sio, socket){
     gameSocket.on('playerJoinGame', playerJoinGame);
     gameSocket.on('playerAnswer', playerAnswer);
     gameSocket.on('playerRestart', playerRestart);
+    gameSocket.on('playerChat', playerChat);
 }
 
 /**
@@ -114,6 +115,14 @@ function playerAnswer(data) {
     // The player's answer is attached to the data object.  \
     // Emit an event with the answer so it can be checked by the 'Host'
     io.sockets.in(data.gameId).emit('hostCheckAnswer', data);
+}
+
+/**
+ * A player chatted
+ * @param data gameId
+ */
+function playerChat(data) {
+    io.sockets.in(data.gameId).emit('hostBroadcastChat', data);
 }
 
 /**
